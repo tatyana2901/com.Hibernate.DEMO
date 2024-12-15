@@ -1,4 +1,4 @@
-package com.Hibernate.DEMO.com.Hibernate.DEMO;
+package com.Hibernate.DEMO.com.Hibernate.DEMO_CRUD_operations;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

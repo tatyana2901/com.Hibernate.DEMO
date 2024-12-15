@@ -1,10 +1,10 @@
-package com.Hibernate.DEMO.com.Hibernate.DEMO;
+package One_one_uni_directional;
 
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "new_employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,10 @@ public class Employee {
     private String department;
     @Column(name="salary")
     private int salary;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="details_id")
+    private Detail empdetail;
 
 
     public Employee() {
@@ -68,6 +72,14 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public Detail getEmpdetail() {
+        return empdetail;
+    }
+
+    public void setEmpdetail(Detail empdetail) {
+        this.empdetail = empdetail;
     }
 
     @Override

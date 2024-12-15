@@ -1,12 +1,12 @@
-import com.Hibernate.DEMO.com.Hibernate.DEMO.Employee;
-import org.hibernate.HibernateException;
+package com.Hibernate.DEMO.com.Hibernate.DEMO_CRUD_operations;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import java.util.List;
 
-public class TestSave {
+public class Main {
 
     public static void main(String[] args) {
         // add(new Employee("Петрова", "Валентина", "IT", 4500));
