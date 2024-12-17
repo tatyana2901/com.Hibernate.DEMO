@@ -19,7 +19,7 @@ public class Department {
     @Column(name = "min_salary")
     private int minSalary;
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "department_id") // указываем foreign key из таблицы employees_bi_direct
     private List<Employee> emps;
 
 
@@ -36,7 +36,7 @@ public class Department {
             emps = new ArrayList<>();
         }
         emps.add(employee);
-        employee.setDepartment(this);
+
     }
 
     public int getId() {

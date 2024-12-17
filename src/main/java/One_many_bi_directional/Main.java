@@ -12,8 +12,8 @@ public class Main {
     public static void main(String[] args) {
      /*   addNewDepNewEmp(new Department("Finance",10,50),
                 new Employee("Иван","Петроненко", 45));*/
-        System.out.println(getDepbyEmpId(1));
-      //  deleteEmpById(1);
+        getEmpsByDepId(2);
+        //  deleteEmpById(1);
 
     }
 
@@ -37,7 +37,7 @@ public class Main {
         }
     }
 
-    public static void getEmpsByDepId(int id) { ///при return list ошибка lazy initialisation
+    public static List<Employee> getEmpsByDepId(int id) { ///при return list ошибка lazy initialisation
         SessionFactory sf = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
@@ -50,9 +50,11 @@ public class Main {
 
             session.beginTransaction();
             Department d = session.get(Department.class, id);
+            System.out.println("Печатается департамент" + d);
             list = d.getEmps();
-            // return list;
-            System.out.println(list);
+            System.out.println("Печатается список" + list);
+            return list;
+            //System.out.println(list);
 
         } finally {
             session.getTransaction().commit();
@@ -75,13 +77,14 @@ public class Main {
             session.beginTransaction();
             Employee emp = session.get(Employee.class, id);
             Department d = emp.getDepartment();
-             return d;
+            return d;
 
         } finally {
             session.getTransaction().commit();
             sf.close();
         }
     }
+
     public static void deleteEmpById(int id) {
         SessionFactory sf = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -93,7 +96,7 @@ public class Main {
             session = sf.getCurrentSession();
             session.beginTransaction();
             Employee emp = session.get(Employee.class, id);
-           session.remove(emp);
+            session.remove(emp);
 
         } finally {
             session.getTransaction().commit();

@@ -10,10 +10,9 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-     /*   addNewDepNewEmp(new Department("Finance",10,50),
-                new Employee("Иван","Петроненко", 45));*/
-        System.out.println(getDepbyEmpId(1));
-      //  deleteEmpById(1);
+
+        addNewDepNewEmp(new Department("Logistic", 500, 800), new Employee("Петр", "Федоров", 700));
+        getEmpsByDepId(2);
 
     }
 
@@ -26,9 +25,9 @@ public class Main {
                 .buildSessionFactory();
         try {
             Session session = sf.getCurrentSession();
+            department.addEmpToDep(employee);
 
             session.beginTransaction();
-            department.addEmpToDep(employee);
             session.persist(department);
             session.getTransaction().commit();
         } finally {
@@ -56,14 +55,13 @@ public class Main {
 
         } finally {
             session.getTransaction().commit();
-
             sf.close();
 
         }
     }
 
 
-    public static Department getDepbyEmpId(int id) { ///при return list ошибка lazy initialisation
+/*    public static Department getDepbyEmpId(int id) { ///при return list ошибка lazy initialisation
         SessionFactory sf = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
@@ -81,7 +79,7 @@ public class Main {
             session.getTransaction().commit();
             sf.close();
         }
-    }
+    }*/
     public static void deleteEmpById(int id) {
         SessionFactory sf = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -99,6 +97,9 @@ public class Main {
             session.getTransaction().commit();
             sf.close();
         }
+
+        //если удалям только работника, то департамент останется
+        //если удаляется департамент, то удалится и работник из этого департамента
     }
 
 
