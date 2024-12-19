@@ -25,6 +25,7 @@ public class Child {
     private List<Section> sections;
 
     public Child() {
+
     }
 
     public Child(String firstName, int age) {
